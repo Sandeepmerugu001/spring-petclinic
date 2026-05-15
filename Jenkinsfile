@@ -31,7 +31,7 @@ pipeline {
     }
     	stage('deploy'){
 		steps{
-		  sh 'java -jar /s1/workspace/test/target/*.jar'
+		  sh 'java -jar /s1/workspace/test/target/spring-petclinic-2.7.3.jar'
 		}
 	}
     
