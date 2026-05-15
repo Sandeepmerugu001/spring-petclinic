@@ -1,11 +1,8 @@
 pipeline {
     agent any
     parameters {
-         choice(name: 'CHOICES', choices: ['mvn package', 'mvn test', 'mvn validate'], description: 'this is options') 
+         choice(name: 'mvn', choices: ['mvn package', 'mvn test', 'mvn validate'], description: 'this is options') 
          }
-    triggers { 
-        pollSCM('* * * * *')
-    }
     stages {
         stage('clone') {
             steps {
@@ -13,10 +10,14 @@ pipeline {
                     branch: 'main'
             }
         }
+	stage('install'){
+		sh 'sudo apt install openjdk-17-jdh -y'
+		sh 'sudo apt install maven -y'
+	}
         stage('build') {
             steps {  
-                echo "Choice: ${params.CHOICE}" 
-                sh 'touch hello'
+                 
+                sh '$mvn'
             
 
             }
