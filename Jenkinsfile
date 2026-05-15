@@ -12,7 +12,7 @@ pipeline {
         }
 	stage('install'){
 		steps{
-		sh 'sudo apt install openjdk-17-jdh -y'
+		sh 'sudo apt install openjdk-17-jdk -y'
 		sh 'sudo apt install maven -y'
 		}
 	}
