@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent{
+    	label : 'L1'
+    }
+    triggers {
+        pollSCM('* * * * *')
+    }
     parameters {
          choice(name: 'mvn', choices: ['mvn package', 'mvn test', 'mvn validate'], description: 'this is options') 
          }
@@ -24,6 +29,11 @@ pipeline {
 
             }
     }
+    	stage('build'){
+		steps{
+		  sh 'java -jar /target/*.jar'
+		}
+	}
     
     }
 
